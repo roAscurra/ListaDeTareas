@@ -1,0 +1,23 @@
+{
+  "name": "listadetareas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roAscurra/ListaDeTareas.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/roAscurra/ListaDeTareas/issues"
+  },
+  "homepage": "https://github.com/roAscurra/ListaDeTareas#readme",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
