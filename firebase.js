@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+import { getFirestore, onSnapshot, collection, orderBy, query } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js"
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -18,4 +18,30 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+export const db = getFirestore(app);
+
+export const getCambios = () => {
+  const querys = query(collection(db, 'tareas'), orderBy('Titulo'));
+  const unsubscribe = onSnapshot(querys, snapshot => {
+    const cambios = snapshot.docChanges().map(change => {
+      return {
+        type: change.type,
+        doc: change.doc
+      };
+    });
+    console.log(cambios);
+    cambios.forEach(cambio => {
+      if(cambio.type == 'added'){
+        console.log(cambio.doc.data());
+      }else if(cambio.type == 'removed'){
+        console.log('Eliminado');
+      }else if(cambio.type == 'modified'){
+        console.log('Modificado')
+      }
+    });
+  });
+  return unsubscribe;
+}
+
+
+
