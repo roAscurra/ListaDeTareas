@@ -19,5 +19,8 @@
   "homepage": "https://github.com/roAscurra/ListaDeTareas#readme",
   "devDependencies": {
     "lite-server": "^2.6.1"
+  },
+  "dependencies": {
+    "firebase": "^9.19.1"
   }
 }
