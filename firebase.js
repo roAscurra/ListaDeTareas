@@ -56,7 +56,7 @@ const renderList = (doc) => {
   lista.append(li);
 }
 export const getCambios = () => {
-  const querys = query(collection(db, 'tareas'), orderBy('Titulo'));
+  const querys = query(collection(db, 'tareas'), orderBy('FechaCreacion','asc'));
   const unsubscribe = onSnapshot(querys, snapshot => {
     const cambios = snapshot.docChanges().map(change => {
       return {
