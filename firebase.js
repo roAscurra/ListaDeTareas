@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
-import { getFirestore, onSnapshot, collection, orderBy, query } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js"
+import { getFirestore, onSnapshot, collection, orderBy, query, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js"
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -75,6 +75,26 @@ export const getCambios = () => {
   });
   return unsubscribe;
 }
-
+export const agregarTarea = (titulo) => {
+  const tareasRef = collection(db, 'tareas');
+  if (titulo) {
+    const tarea = {
+      Titulo: titulo,
+      FechaCreacion: serverTimestamp()
+    };
+    return addDoc(tareasRef, tarea)
+      .then((docRef) => {
+        console.log('Tarea agregada con ID:', docRef.id);
+        return docRef.id;
+      })
+      .catch((error) => {
+        console.error('Error al agregar la tarea:', error);
+        throw error;
+      });
+  } else {
+    console.error('El título de la tarea es undefined');
+    return Promise.reject('El título de la tarea es undefined');
+  }
+};
 
 
