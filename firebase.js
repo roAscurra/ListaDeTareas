@@ -47,7 +47,9 @@ const renderList = (doc) => {
   div.appendChild(deleteBtn);
   div.appendChild(enlace);
   li.appendChild(div);
-
+  const fechaCreacion = doc.data().FechaCreacion.toDate();
+  console.log(doc.data().Titulo)
+  console.log('Fecha de creación:', fechaCreacion);
   deleteBtn.addEventListener('click', e => {
     console.log('delete');
   })
